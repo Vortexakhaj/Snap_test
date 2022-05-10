@@ -15,7 +15,7 @@ using UnityEngine;
 public class FPS : MonoBehaviour
 {
 
-    public MatchandSnap _matchScript;
+    MatchandSnap _matchScript;
 
     public float speed = 5.0f;
     public float m_MovX;
@@ -40,24 +40,26 @@ public class FPS : MonoBehaviour
     public void Start()
     {
         m_Rigid = GetComponent<Rigidbody>();
+        _matchScript = GetComponent<MatchandSnap>();
     }
 
     // Update is called once per frame
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
         {
             _matchScript.dragging = true;
         }
-        if(Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
         {
             _matchScript.dragging = false;
         }
 
-        
-            m_MovX = Input.GetAxis("Horizontal");
-            m_MovY = Input.GetAxis("Vertical");
-        
+
+
+        m_MovX = Input.GetAxis("Horizontal");
+        m_MovY = Input.GetAxis("Vertical");
+
 
         m_moveHorizontal = transform.right * m_MovX;
         m_movVertical = transform.forward * m_MovY;
@@ -65,35 +67,35 @@ public class FPS : MonoBehaviour
         m_velocity = (m_moveHorizontal + m_movVertical).normalized * speed;
 
         //mouse movement 
-        m_yRot = Input.GetAxisRaw("Mouse X");
-        m_rotation = new Vector3(0, m_yRot, 0) * m_lookSensitivity * Time.deltaTime *speed;
+        m_yRot = Input.GetAxis("Mouse X");
+        m_rotation = new Vector3(0, m_yRot, 0) * m_lookSensitivity;
 
-        m_xRot = Input.GetAxisRaw("Mouse Y");
-        m_cameraRotation = new Vector3(m_xRot, 0, 0) * m_lookSensitivity * Time.deltaTime * speed;
+        m_xRot = Input.GetAxis("Mouse Y");
+        m_cameraRotation = new Vector3(m_xRot, 0, 0) * m_lookSensitivity;
 
         //clamp
         xClamp += m_rotation.y;
         yClamp += m_cameraRotation.x;
 
-        if(xClamp > 45.0)
+        /* if (xClamp > 45.0)
+         {
+             xClamp = 45.0f;
+             m_rotation = Vector3.zero;
+         }
+         else if (xClamp < -45.0f)
+         {
+             xClamp = -45.0f;
+             m_rotation = Vector3.zero;
+         }*/
+
+        if (yClamp > 20.0)
         {
-            xClamp = 45.0f;
-            m_rotation = Vector3.zero;
-        }
-        else if(xClamp < -45.0f)
-        {
-            xClamp = -45.0f;
-            m_rotation = Vector3.zero;
-        }
-        
-        if(yClamp > 35.0)
-        {
-            xClamp = 35.0f;
+            xClamp = 20.0f;
             m_cameraRotation = Vector3.zero;
         }
-        else if(yClamp < -10.0f)
+        else if (yClamp < -35.0f)
         {
-            yClamp = -10.0f;
+            yClamp = -35.0f;
             m_cameraRotation = Vector3.zero;
         }
 
@@ -101,10 +103,9 @@ public class FPS : MonoBehaviour
         //apply camera rotation
 
         //move the actual player here
-        if (m_velocity != Vector3.zero)
-        {
-            m_Rigid.MovePosition(m_Rigid.position + m_velocity * Time.fixedDeltaTime);
-        }
+
+        m_Rigid.MovePosition(m_Rigid.position + m_velocity * Time.fixedDeltaTime);
+
 
         if (m_rotation != Vector3.zero)
         {
@@ -118,42 +119,42 @@ public class FPS : MonoBehaviour
             m_Camera.transform.Rotate(-m_cameraRotation);
         }
 
-        InternalLockUpdate();
+        //InternalLockUpdate();
 
     }
 
     //controls the locking and unlocking of the mouse
-    public void InternalLockUpdate()
-    {
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            m_cursorIsLocked = false;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            m_cursorIsLocked = true;
-        }
+    /* public void InternalLockUpdate()
+     {
+         if (Input.GetKeyUp(KeyCode.Escape))
+         {
+             m_cursorIsLocked = false;
+         }
+         else if (Input.GetMouseButtonUp(0))
+         {
+             m_cursorIsLocked = true;
+         }
 
-        if (m_cursorIsLocked)
-        {
-            UnlockCursor();
-        }
-        else if (!m_cursorIsLocked)
-        {
-            LockCursor();
-        }
-    }
+         if (m_cursorIsLocked)
+         {
+             UnlockCursor();
+         }
+         else if (!m_cursorIsLocked)
+         {
+             LockCursor();
+         }
+     }
 
-    public void UnlockCursor()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
+     public void UnlockCursor()
+     {
+         Cursor.lockState = CursorLockMode.Locked;
+         Cursor.visible = false;
+     }
 
-    public void LockCursor()
-    {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
+     public void LockCursor()
+     {
+         Cursor.lockState = CursorLockMode.None;
+         Cursor.visible = true;
+     }*/
 
 }

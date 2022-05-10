@@ -389,7 +389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.33, z: 0.4}
+  m_LocalPosition: {x: 0, y: 1.33, z: -3.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1208398627}
@@ -501,7 +501,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074402130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 96.8}
+  m_LocalPosition: {x: 0, y: 0, z: 100}
   m_LocalScale: {x: 5.325069, y: 1, z: 5.0641184}
   m_Children: []
   m_Father: {fileID: 0}
@@ -557,7 +557,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edcc9f3c33cae7646b719bc60d774a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _matchScript: {fileID: 1208398628}
   speed: 5
   m_MovX: 0
   m_MovY: 0
@@ -572,7 +571,7 @@ MonoBehaviour:
   m_rotation: {x: 0, y: 0, z: 0}
   m_cameraRotation: {x: 0, y: 0, z: 0}
   m_lookSensitivity: 3
-  m_cursorIsLocked: 1
+  m_cursorIsLocked: 0
   m_Camera: {fileID: 963194227}
 --- !u!135 &1208398624
 SphereCollider:
@@ -582,7 +581,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1208398621}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -664,10 +663,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camSecond: {fileID: 1294572769}
-  _placeholderName: SnapObj
+  _placeHolder: {fileID: 1074402130}
   triggerState: 0
   dragging: 0
   placed: 0
+  initialPos: {x: 0, y: 0, z: 0}
+  moveBack: 0
 --- !u!1 &1294572767
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,15 +776,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: baa946b769564ea46b6d0475c2cb0c32, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 96.8
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: baa946b769564ea46b6d0475c2cb0c32, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: baa946b769564ea46b6d0475c2cb0c32, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: baa946b769564ea46b6d0475c2cb0c32, type: 3}
       propertyPath: m_LocalRotation.y
@@ -795,7 +796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: baa946b769564ea46b6d0475c2cb0c32, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: baa946b769564ea46b6d0475c2cb0c32, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
